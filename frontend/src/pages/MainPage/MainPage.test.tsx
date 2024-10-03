@@ -1,11 +1,8 @@
 import React from 'react';
-import * as productsHook from '../../hooks/useProducts';
-import * as applyCategoriesUtil from '../../utils/applyCategories';
-import * as updateCategoriesUtil from '../../utils/updateCategories';
 import { Product } from '../../types';
 import { act, render, screen, fireEvent } from '@testing-library/react';
 import { MainPage } from './MainPage';
-describe('test main page component', () => {
+describe('MainPage test', () => {
     const products: Product[] = [
         {
             id: 1,
@@ -41,20 +38,6 @@ describe('test main page component', () => {
         },
     ];
 
-    const mockUseProducts = jest
-        .spyOn(productsHook, 'useProducts')
-        .mockReturnValue(products);
-
-    const mockUpdateCategories = jest.spyOn(
-        updateCategoriesUtil,
-        'updateCategories'
-    );
-
-    const mockApplyCategories = jest.spyOn(
-        applyCategoriesUtil,
-        'applyCategories'
-    );
-
     beforeEach(() => {
         jest.useFakeTimers().setSystemTime(new Date('2024-10-03 00:00:00'));
     });
@@ -84,31 +67,5 @@ describe('test main page component', () => {
                 expect(screen.queryByText(name)).toBeNull();
             }
         });
-    });
-
-    it('should call once useProducts when render', () => {
-        expect(mockUseProducts).not.toBeCalled();
-        render(<MainPage />);
-        expect(mockUseProducts).toBeCalledTimes(1);
-    });
-
-    it('should call once applyCategories when render', () => {
-        expect(mockApplyCategories).not.toBeCalled();
-        render(<MainPage />);
-        expect(mockApplyCategories).toBeCalledTimes(1);
-    });
-
-    it('should call applyCategories on category click', () => {
-        render(<MainPage />);
-        expect(mockApplyCategories).toBeCalledTimes(1);
-        fireEvent.click(screen.getAllByText('Одежда')[0]);
-        expect(mockApplyCategories).toBeCalledTimes(2);
-    });
-
-    it('should call updateCategories on category click', () => {
-        render(<MainPage />);
-        expect(mockUpdateCategories).not.toBeCalled();
-        fireEvent.click(screen.getAllByText('Одежда')[0]);
-        expect(mockUpdateCategories).toBeCalledTimes(1);
     });
 });

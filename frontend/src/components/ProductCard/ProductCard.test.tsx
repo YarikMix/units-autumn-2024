@@ -5,10 +5,10 @@ import { render } from '@testing-library/react';
 
 describe('ProductCard test', () => {
     const productProps: Product = {
-        id: 0,
+        id: 123,
         name: 'Product name',
-        description: 'This product is unbelievable',
-        price: 999,
+        description: 'Product description',
+        price: 9999,
         priceSymbol: '$',
         category: 'Электроника',
         imgUrl: '/phone.png',
