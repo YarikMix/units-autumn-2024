@@ -18,18 +18,16 @@
   },
   "plugins": [
     "react",
-    "@typescript-eslint",
-    "prettier"
+    "@typescript-eslint"
   ],
   "rules": {
     "linebreak-style": [
       "error",
-      "unix"
+      "windows"
     ],
     "quotes": [
       "error",
       "single"
-    ],
-    "prettier/prettier": "error"
+    ]
   }
 }
