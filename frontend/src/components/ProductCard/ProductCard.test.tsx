@@ -26,4 +26,18 @@ describe('ProductCard test', () => {
         render(<ProductCard {...productProps} />);
         expect(mockGetPrice).toBeCalledTimes(1);
     });
+
+    it('should not render img', () => {
+        const rendered = render(
+            <ProductCard
+                id={1}
+                name={'Product name'}
+                description={'Product description'}
+                price={555}
+                category={'Для дома'}
+            />
+        );
+
+        expect(rendered.queryByRole('img')).toBeNull();
+    });
 });

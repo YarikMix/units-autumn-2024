@@ -2,6 +2,7 @@ import unittest
 import math
 from src.calculator import Calculator
 
+
 class TestCalculator(unittest.TestCase):
 
     def setUp(self):
@@ -103,6 +104,15 @@ class TestCalculator(unittest.TestCase):
     def test_log_one(self):
         self.assertAlmostEqual(self.calculator.log(1, 5), 0.0)
 
+    def test_log_negative_1(self):
+        self.assertRaises(ValueError, self.calculator.log, 3, -10)
+
+    def test_log_negative_2(self):
+        self.assertRaises(ValueError, self.calculator.log, -10, 3)
+
+    def test_log_base_zero(self):
+        self.assertRaises(ValueError, self.calculator.log, 2, 0)
+
     def test_log_base_one(self):
         self.assertRaises(ZeroDivisionError, self.calculator.log, 2, 1)
 
@@ -118,6 +128,9 @@ class TestCalculator(unittest.TestCase):
     def test_sqrt_float_perfect_square(self):
         self.assertAlmostEqual(self.calculator.sqrt(0.25), 0.5)
 
+    def test_sqrt_int_negative(self):
+        self.assertAlmostEqual(self.calculator.sqrt(-9), 3j)
+
     def test_sqrt_one(self):
         self.assertAlmostEqual(self.calculator.sqrt(1), 1)
 
@@ -132,6 +145,18 @@ class TestCalculator(unittest.TestCase):
 
     def test_nth_root_int_perfect_degree(self):
         self.assertAlmostEqual(self.calculator.nth_root(0, 3), 0.0)
+
+    def test_nth_root_lists(self):
+        self.assertRaises(TypeError, self.calculator.nth_root, [1, 2], [3, 4])
+
+    def test_nth_root_tuples(self):
+        self.assertRaises(TypeError, self.calculator.nth_root, (1, 2), (3, 4))
+
+    def test_nth_root_sets(self):
+        self.assertRaises(TypeError, self.calculator.nth_root, {1, 2}, {3, 4})
+
+    def test_nth_root_dicts(self):
+        self.assertRaises(TypeError, self.calculator.nth_root, {'a': 1}, {'b': 2})
 
 
 if __name__ == "__main__":
