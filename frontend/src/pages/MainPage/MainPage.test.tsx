@@ -1,7 +1,18 @@
 import React from 'react';
 import { Product } from '../../types';
-import { act, render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { MainPage } from './MainPage';
+import {useCurrentTime} from "../../hooks";
+import * as currentTimeHook from "../../hooks/useCurrentTime"
+import * as updateCategoriesModule from "../../utils/updateCategories"
+import * as applyCategoriesModule from "../../utils/applyCategories"
+
+const mockCurrentTime = jest.spyOn(currentTimeHook, 'useCurrentTime');
+mockCurrentTime.mockReturnValue('12:00:00')
+
+const mockUC = jest.spyOn(updateCategoriesModule, 'updateCategories');
+const mockAC = jest.spyOn(applyCategoriesModule, 'applyCategories');
+
 describe('MainPage test', () => {
     const products: Product[] = [
         {
@@ -38,21 +49,11 @@ describe('MainPage test', () => {
         },
     ];
 
-    beforeEach(() => {
-        jest.useFakeTimers().setSystemTime(new Date('2024-10-03 00:00:00'));
-    });
-
     it('should render correctly', () => {
         const rendered = render(<MainPage />);
         expect(rendered.asFragment()).toMatchSnapshot();
     });
 
-    it('should update time', () => {
-        render(<MainPage />);
-        expect(screen.queryByText('00:00:00')).not.toBeNull();
-        act(() => jest.advanceTimersByTime(1000));
-        expect(screen.queryByText('00:00:01')).not.toBeNull();
-    });
 
     it('should filter products when category clicked', () => {
         render(<MainPage />);

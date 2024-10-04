@@ -88,11 +88,29 @@ class TestCalculator(unittest.TestCase):
     def test_ln_negative(self):
         self.assertRaises(ValueError, self.calculator.ln, -1)
 
+    def test_ln_zero(self):
+        self.assertRaises(ValueError, self.calculator.ln, 0)
+
+    def test_ln_string(self):
+        self.assertRaises(TypeError, self.calculator.ln, 'a')
+
+    def test_ln_none(self):
+        self.assertRaises(TypeError, self.calculator.ln, None)
+
     def test_log_perfect_dergree(self):
         self.assertAlmostEqual(self.calculator.log(8, 2), 3.0)
 
     def test_log_one(self):
         self.assertAlmostEqual(self.calculator.log(1, 5), 0.0)
+
+    def test_log_base_one(self):
+        self.assertRaises(ZeroDivisionError, self.calculator.log, 2, 1)
+
+    def test_log_string(self):
+        self.assertRaises(TypeError, self.calculator.log, 'a', 'a')
+
+    def test_log_none(self):
+        self.assertRaises(TypeError, self.calculator.log, None, None)
 
     def test_sqrt_int_perfect_square(self):
         self.assertAlmostEqual(self.calculator.sqrt(25), 5.0)

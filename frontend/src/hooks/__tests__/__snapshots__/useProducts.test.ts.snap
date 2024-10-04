@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test useProducts hook should return products list 1`] = `
+[
+  {
+    "category": "Электроника",
+    "description": "Latest iphone, buy it now",
+    "id": 1,
+    "imgUrl": "/iphone.png",
+    "name": "IPhone 14 Pro",
+    "price": 999,
+    "priceSymbol": "$",
+  },
+  {
+    "category": "Одежда",
+    "description": "Запускаем гуся, работяги",
+    "id": 2,
+    "name": "Костюм гуся",
+    "price": 1000,
+    "priceSymbol": "₽",
+  },
+  {
+    "category": "Для дома",
+    "description": "Говорят, что ее использовали в pixar",
+    "id": 3,
+    "imgUrl": "/lamp.png",
+    "name": "Настольная лампа",
+    "price": 699,
+  },
+  {
+    "category": "Электроника",
+    "description": "Незаменимая вещь для студента",
+    "id": 4,
+    "name": "Принтер",
+    "price": 7000,
+  },
+]
+`;

@@ -1,12 +1,21 @@
 import { updateCategories } from '../updateCategories';
 describe('test update category function', () => {
-    it('should toggle category in categories', () => {
-        expect(updateCategories(['Для дома', 'Одежда'], 'Для дома')).toEqual([
-            'Одежда',
+
+    const electronic = 'Электроника';
+    const clothes = 'Одежда';
+    const home = 'Для дома';
+
+    it('should return removed categories', () => {
+        expect(updateCategories([home, clothes], home)).toEqual([
+            clothes
         ]);
-        expect(updateCategories(['Для дома', 'Одежда'], 'Электроника')).toEqual(
-            ['Для дома', 'Одежда', 'Электроника']
+    });
+
+    it('should return added category', () => {
+        expect(updateCategories([], electronic)).toEqual([electronic]);
+
+        expect(updateCategories([home, clothes], electronic)).toEqual(
+            [home, clothes, electronic]
         );
-        expect(updateCategories([], 'Электроника')).toEqual(['Электроника']);
     });
 });
